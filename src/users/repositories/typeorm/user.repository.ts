@@ -14,4 +14,10 @@ export class UserTypeOrmRepository implements IUserRepository {
   async create(data: User): Promise<void> {
     await this.typeOrmRepository.save(data);
   }
+
+  async getUserById(id: string): Promise<User> {
+    return await this.typeOrmRepository.findOneBy({
+      id,
+    });
+  }
 }

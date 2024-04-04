@@ -6,8 +6,16 @@ export class UserInMemoryRepository implements IUserRepository {
 
   async create(data: User): Promise<void> {
     data.id = crypto.randomUUID();
-    const itemIndex = this.items.findIndex((item) => item.id === data.id);
+    this.items.push(data);
+  }
 
-    this.items[itemIndex] = data;
+  async getUserById(id: string): Promise<User> {
+    const question = this.items.find((item) => item.id.toString() === id);
+
+    if (!question) {
+      return null;
+    }
+
+    return question;
   }
 }
