@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { IUserRepository } from '../IUserRepository';
-import { SignUpDto } from 'src/users/dtos/sign-up.dto';
 import { Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +11,7 @@ export class UserTypeOrmRepository implements IUserRepository {
     private typeOrmRepository: Repository<User>,
   ) {}
 
-  async create(data: SignUpDto): Promise<void> {
+  async create(data: User): Promise<void> {
     await this.typeOrmRepository.save(data);
   }
 }

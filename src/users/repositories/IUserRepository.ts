@@ -1,5 +1,5 @@
-import { SignUpDto } from '../dtos/sign-up.dto';
+import { User } from '../entities/user.entity';
 
 export interface IUserRepository {
-  create(data: SignUpDto): Promise<void>;
+  create(data: User): Promise<void>;
 }
