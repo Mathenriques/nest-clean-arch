@@ -5,13 +5,20 @@ import { UserModule } from './users/users.module';
 
 @Module({
   imports: [
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: 'localhost',
+    //   port: 5432,
+    //   username: 'postgres',
+    //   password: 'postgres',
+    //   database: 'database',
+    //   entities: [User],
+    //   synchronize: true,
+    //   autoLoadEntities: true,
+    // }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'database',
+      type: 'sqlite',
+      database: ':memory:',
       entities: [User],
       synchronize: true,
       autoLoadEntities: true,
