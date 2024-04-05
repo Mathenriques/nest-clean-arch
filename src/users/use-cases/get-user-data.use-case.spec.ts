@@ -26,6 +26,7 @@ describe('Sign Up Use Case Teste', () => {
     user = await signUpUseCase.execute({
       name: 'Matheus Henriques',
       email: 'teste@example.com',
+      password: 'abcde',
     });
 
     useCase = module.get<GetUserDataUseCase>(GetUserDataUseCase);

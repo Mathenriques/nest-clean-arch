@@ -12,7 +12,13 @@ export class User {
   @Column()
   email: string;
 
-  constructor(props: { name: string; email: string }, id?: string) {
+  @Column()
+  password_hash: string;
+
+  constructor(
+    props: { name: string; email: string; password_hash: string },
+    id?: string,
+  ) {
     Object.assign(this, props), (this.id = id ?? randomUUID());
   }
 }
