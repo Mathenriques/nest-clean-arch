@@ -20,4 +20,10 @@ export class UserTypeOrmRepository implements IUserRepository {
       id,
     });
   }
+
+  async getUserByEmail(email: string): Promise<User> {
+    return await this.typeOrmRepository.findOneBy({
+      email,
+    });
+  }
 }

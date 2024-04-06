@@ -18,4 +18,8 @@ export class UserInMemoryRepository implements IUserRepository {
 
     return question;
   }
+
+  async getUserByEmail(email: string): Promise<User> {
+    throw new Error('Method not implemented.');
+  }
 }
