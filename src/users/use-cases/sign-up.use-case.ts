@@ -18,6 +18,9 @@ export class SignUpUseCase {
     const user = new User({ name, email, password_hash });
 
     await this.userRepo.create(user);
-    return user;
+    return {
+      ...user,
+      password_hash: undefined
+    };
   }
 }
