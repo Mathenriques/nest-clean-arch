@@ -6,7 +6,10 @@ import { AuthController } from './auth.controller';
 // import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { UserModule } from 'src/users/users.module';
+import { LoginUseCase } from './use-cases/login.use-case';
 // import { LoginValidationMiddleware } from './middlewares/login-validation.middleware';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
@@ -18,7 +21,7 @@ import { UserModule } from 'src/users/users.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [LocalStrategy],
+  providers: [LocalStrategy, JwtModule, LoginUseCase],
 })
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
