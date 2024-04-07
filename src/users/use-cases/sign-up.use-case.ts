@@ -20,7 +20,7 @@ export class SignUpUseCase {
     await this.userRepo.create(user);
     return {
       ...user,
-      password_hash: undefined
+      password_hash: undefined,
     };
   }
 }

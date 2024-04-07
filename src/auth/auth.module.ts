@@ -2,13 +2,12 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
-// import { AuthService } from './auth.service';
-// import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { UserModule } from 'src/users/users.module';
 import { LoginUseCase } from './use-cases/login.use-case';
-// import { LoginValidationMiddleware } from './middlewares/login-validation.middleware';
+import { LoginValidationMiddleware } from './middlewares/login-validation.middleware';
 import * as dotenv from 'dotenv';
+import { JwtStrategy } from './strategies/jwt.strategy';
 dotenv.config();
 
 @Module({
@@ -21,10 +20,10 @@ dotenv.config();
     }),
   ],
   controllers: [AuthController],
-  providers: [LocalStrategy, JwtModule, LoginUseCase],
+  providers: [LocalStrategy, JwtStrategy, JwtModule, LoginUseCase],
 })
 export class AuthModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoginValidationMiddleware).forRoutes('login');
+    consumer.apply(LoginValidationMiddleware).forRoutes('login');
   }
 }

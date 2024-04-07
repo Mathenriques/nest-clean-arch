@@ -10,6 +10,7 @@ import {
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthRequest } from './models/AuthRequest.model';
 import { LoginUseCase } from './use-cases/login.use-case';
+import { isPublic } from './decorators/is-public.decorator';
 
 @Controller()
 export class AuthController {
@@ -17,6 +18,7 @@ export class AuthController {
   private readonly loginUseCase: LoginUseCase;
 
   @Post('login')
+  @isPublic()
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   login(@Request() req: AuthRequest) {
